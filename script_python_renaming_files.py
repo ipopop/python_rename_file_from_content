@@ -7,12 +7,32 @@ from unidecode import unidecode
 source_directory = "source"
 target_directory = "target"
 
+# Ask the user for the source_directory, target_directory, and html_content
+source_directory = input("Please enter the source directory (default: 'source'): ") or "source"
+target_directory = input("Please enter the target directory (default: 'target'): ") or "target"
+html_content = input("Please enter the HTML content (default: 'html_content'): ") or "html_content"
+
 # Verify if the source and target directories exist
 if not os.path.exists(source_directory):
     print("Source directory not found.")
     exit()
 if not os.path.exists(target_directory):
     os.makedirs(target_directory)
+
+# Print the user responses
+print("Source directory: ", source_directory)
+print("Target directory: ", target_directory)
+print("HTML content: ", html_content)
+
+# Ask for confirmation or update
+confirm = input("Is this information correct? (yes/no): ").lower()
+if confirm in ['y', 'yes']:
+    pass
+elif confirm in ['n', 'no']:
+    print("Please run the script again and enter the correct information.")
+    exit()
+else:
+    print("Invalid input. Please enter 'yes' or 'no'.")
 
 # Retrieve the text from the HTML file
 def retrieve_text_from_html(file_path):
